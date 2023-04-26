@@ -35,6 +35,9 @@ public class RecipeDAO {
                             rs.getString(11));
                     result.add(recipe);
                 }
+                rs.close();
+                ps.close();
+                statement.close();
             }
         } catch (SQLException e) {
 

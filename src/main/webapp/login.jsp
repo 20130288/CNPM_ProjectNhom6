@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.hcmuaf.st.Entity.Account" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,10 @@
 
 </head>
 <body>
+<% Account account = new Account();
+    if (session.getAttribute("acc") != null) {
+        account = (Account) session.getAttribute("acc");
+    } %>
 <section id="header">
     <nav class="navbar navbar-default navbar-fixed-top">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,7 +43,9 @@
                     <li><a href="index.jsp">TRANG CHỦ</a></li>
                     <li><a href="recipes.jsp">CÔNG THỨC</a></li>
                     <li><a href="contact.jsp">LIÊN HỆ</a></li>
-                    <li class="active"><a href="login.jsp">TÀI KHOẢN</a></li>
+                    <li class="active"><a
+                            href="login.jsp"><%=session.getAttribute("acc") != null ? account.getUname() : "TÀI KHOẢN" %>
+                    </a></li>
 
                 </ul>
             </div>
@@ -74,16 +81,18 @@
                             <h4 class="text-center">O</h4>
                         </div>
                     </div>
-                    <form action="">
+                    <form action="loginControl" method="post">
                         <label for="email">Địa chỉ Email hoặc tên đăng nhập<span>*</span></label>
-                        <input id="email" type="email" placeholder="Nhập email hoặc tên đăng nhập...">
+                        <input id="email" type="text" name="uname" placeholder="Nhập email hoặc tên đăng nhập...">
                         <label for="pass">Mật khẩu <span>*</span></label>
-                        <input id="pass" type="password" placeholder="Nhập mật khẩu...">
+                        <input id="pass" type="password" name="pass" placeholder="Nhập mật khẩu...">
+                        <div class="message"
+                             style="color: red"><%=request.getAttribute("message") != null ? request.getAttribute("message") : "" %>
+                        </div>
                         <div class="save">
                             <div class="lost-pass">
                                 <a href="#">Quên mật khẩu?</a>
                             </div>
-
                         </div>
                         <button class="login-button" type="submit">ĐĂNG NHẬP</button>
                         <div class="or">
@@ -114,7 +123,7 @@
                             </div>
                         </div>
                         <form action="">
-                            <label for="uname">Username- <span>*</span></label>
+                            <label for="uname">Username <span>*</span></label>
                             <input id="uname" type="text" placeholder="Nhập Tên Đăng Nhập...">
                             <label for="email-register">Địa Chỉ Email <span>*</span></label>
                             <input id="email-register" type="email" placeholder="Địa Chỉ Email...">

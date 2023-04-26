@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.hcmuaf.st.Entity.Account" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,10 @@
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+<% Account account = new Account();
+    if (session.getAttribute("acc") != null) {
+        account = (Account) session.getAttribute("acc");
+    } %>
 <section id="header">
     <nav class="navbar navbar-default navbar-fixed-top">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,7 +43,8 @@
                     <li><a href="index.jsp">TRANG CHỦ</a></li>
                     <li><a href="recipes.jsp">CÔNG THỨC</a></li>
                     <li><a href="contact.jsp">LIÊN HỆ</a></li>
-                    <li><a href="login.jsp">TÀI KHOẢN</a></li>
+                    <li><a href="login.jsp"><%=session.getAttribute("acc") != null ? account.getUname() : "TÀI KHOẢN" %>
+                    </a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

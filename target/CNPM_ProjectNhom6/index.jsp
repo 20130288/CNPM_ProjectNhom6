@@ -3,6 +3,7 @@
 <%@ page import="vn.edu.hcmuaf.st.DAO.RecipeDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="vn.edu.hcmuaf.st.DAO.HomeDAO" %>
+<%@ page import="vn.edu.hcmuaf.st.Entity.Account" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +35,10 @@
     if (newest == null) {
         newest = new ArrayList<>();
     }
+    Account account = new Account();
+    if (session.getAttribute("acc") != null) {
+        account = (Account) session.getAttribute("acc");
+    }
 %>
 <section id="header">
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -56,7 +61,8 @@
                     <li class="active"><a href="index.jsp">TRANG CHỦ</a></li>
                     <li><a href="recipes.jsp">CÔNG THỨC</a></li>
                     <li><a href="contact.jsp">LIÊN HỆ</a></li>
-                    <li><a href="login.jsp">TÀI KHOẢN</a></li>
+                    <li><a href="login.jsp"><%=session.getAttribute("acc") != null ? account.getUname() : "TÀI KHOẢN" %>
+                    </a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
