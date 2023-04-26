@@ -1,15 +1,6 @@
-/*
-Template Name:Private Chef
-File: Layout CSS
-Author: Templates On Web
-Author URI: http://templateonweb.com/
-Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152">Website Template Licence</a>
-*/
-
-
 /********************* recipes_main ****************/
 #recipes_main{ 
- background-image: url(../img/24.jpg);
+ background-image: url(../img/Banner/banner.jpg);
  background-repeat: no-repeat;
  background-size: cover;
 }
@@ -67,6 +58,7 @@ Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152
  padding-bottom: 25px;
  box-shadow: 0px 0 1px 1px #f1e006;
  margin-bottom: 20px;
+ height: 430px;
 }
 .recipes_2 h4{ 
  padding-top:10px;

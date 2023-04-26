@@ -1,3 +1,8 @@
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.st.Entity.Recipe" %>
+<%@ page import="vn.edu.hcmuaf.st.DAO.RecipeDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="vn.edu.hcmuaf.st.DAO.HomeDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +24,17 @@
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+<% RecipeDAO recipeDAO = new RecipeDAO();
+    HomeDAO homeDAO = new HomeDAO();
+    List<Recipe> recipeList = recipeDAO.getIngredientList();
+    List<Recipe> newest = homeDAO.getNewest();
+    if (recipeList == null) {
+        recipeList = new ArrayList<>();
+    }
+    if (newest == null) {
+        newest = new ArrayList<>();
+    }
+%>
 <section id="header">
     <nav class="navbar navbar-default navbar-fixed-top">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -108,81 +124,29 @@
                         <h4 class="text-center">O</h4>
                     </div>
                 </div>
+                <% for (int i = 0; i < recipeList.size(); i++) {
+                %>
                 <div class="col-sm-6">
                     <div class="event_2">
                         <!-- colored -->
-                        <div class="ih-item square colored effect14 bottom_to_top"><a href="#">
-                            <div class="img"><img src="img/16.jpg" alt="abc" class="img-responsive"></div>
+                        <div class="ih-item square colored effect14 bottom_to_top"><a href="details.jsp">
+                            <div class="img"><img src="<%=recipeList.get(i).getThumbnail() %>" alt="abc"
+                                                  class="img-responsive"></div>
                             <div class="info">
-                                <h3>Integer nec odionec</h3>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odionec odio.
-                                    Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-                                    Duis sagittis ipsum.
-                                    Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum
-                                    lacinia arcu eget nulla.
-                                    torquent per conubia nostra, per inceptos . Curabitursodales ligula in libero.
-                                    Sed.</p>
+                                <h3><%=recipeList.get(i).getName() %>
+                                </h3>
+                                <p><%=recipeList.get(i).getIntro() %>
+                                </p>
                             </div>
                         </a></div>
                         <!-- end colored -->
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="event_2">
-                        <!-- colored -->
-                        <div class="ih-item square colored effect14 bottom_to_top"><a href="#">
-                            <div class="img"><img src="img/17.jpg" alt="abc" class="img-responsive"></div>
-                            <div class="info">
-                                <h3>Integer nec odionec</h3>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odionec odio.
-                                    Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-                                    Duis sagittis ipsum.
-                                    Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum
-                                    lacinia arcu eget nulla.
-                                    torquent per conubia nostra, per inceptos . Curabitursodales ligula in libero.
-                                    Sed.</p>
-                            </div>
-                        </a></div>
-                        <!-- end colored -->
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="event_2">
-                        <!-- colored -->
-                        <div class="ih-item square colored effect14 bottom_to_top"><a href="#">
-                            <div class="img"><img src="img/18.jpg" alt="abc" class="img-responsive"></div>
-                            <div class="info">
-                                <h3>Integer nec odionec</h3>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odionec odio.
-                                    Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-                                    Duis sagittis ipsum.
-                                    Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum
-                                    lacinia arcu eget nulla.
-                                    torquent per conubia nostra, per inceptos . Curabitursodales ligula in libero.
-                                    Sed.</p>
-                            </div>
-                        </a></div>
-                        <!-- end colored -->
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="event_2">
-                        <!-- colored -->
-                        <div class="ih-item square colored effect14 bottom_to_top"><a href="#">
-                            <div class="img"><img src="img/19.jpg" alt="abc" class="img-responsive"></div>
-                            <div class="info">
-                                <h3>Integer nec odionec</h3>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odionec odio.
-                                    Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-                                    Duis sagittis ipsum.
-                                    Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum
-                                    lacinia arcu eget nulla.
-                                    torquent per conubia nostra, per inceptos . Curabitursodales ligula in libero.
-                                    Sed.</p>
-                            </div>
-                        </a></div>
-                        <!-- end colored -->
-                    </div>
+                <% } %>
+            </div>
+            <div class="col-sm-12" style="margin-top: 30px;">
+                <div class="event_1">
+                    <a href="recipes.jsp" class="button">Xem thêm</a>
                 </div>
             </div>
         </div>
@@ -209,7 +173,7 @@
                         <h4>Pasta Recipe</h4>
                         <p>Pasta is one of the most popular North Indian pasta dishes. It is a simple preparation which
                             can...</p>
-                        <a href="#" class="button">See More</a>
+                        <a href="#" class="button">Xem thêm</a>
                     </div>
                 </div>
             </div>
@@ -226,38 +190,18 @@
                 </div>
             </div>
             <div class="noodles_2 clearfix">
+                <% for (int i = 0; i < newest.size(); i++) { %>
                 <div class="col-sm-3">
                     <div class="noodles_3">
-                        <a href="#"><img src="img/11.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Paneer Bhurji MAGGI Noodles</h4>
-                        <p>Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget
-                            nulla.</p>
+                        <a href="details.jsp"><img src="<%=newest.get(i).getThumbnail() %>" alt="abc"
+                                                   class="img_responsive"></a>
+                        <h4><%=newest.get(i).getName() %>
+                        </h4>
+                        <p><%=newest.get(i).getIntro() %>
+                        </p>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="noodles_3">
-                        <a href="#"><img src="img/12.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Egg Bhurji MAGGI Noodles</h4>
-                        <p>Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget
-                            nulla.</p>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="noodles_3">
-                        <a href="#"><img src="img/13.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Easy Peasy MAGGI Noodles</h4>
-                        <p>Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget
-                            nulla.</p>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="noodles_3">
-                        <a href="#"><img src="img/14.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Cheesy Italiano MAGGI Noodles</h4>
-                        <p>Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget
-                            nulla.</p>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </div>
     </div>
