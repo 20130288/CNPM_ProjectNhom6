@@ -1,3 +1,7 @@
+<%@ page import="vn.edu.hcmuaf.st.DAO.RecipeDAO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.st.Entity.Recipe" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +21,12 @@
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+<% RecipeDAO recipeDAO = new RecipeDAO();
+    List<Recipe> recipeList = recipeDAO.getIngredientList();
+    if (recipeList == null) {
+        recipeList = new ArrayList<>();
+    }
+%>
 <section id="header">
     <nav class="navbar navbar-default navbar-fixed-top">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -148,101 +158,17 @@
     <div class="container">
         <div class="row">
             <div class="recipes_1 clearfix">
+                <% for (int i = 0; i < recipeList.size(); i++) { %>
                 <div class="col-sm-4">
                     <div class="recipes_2">
-                        <a href="details.jsp"><img src="img/Recipes/fry/fry-1.jpg" alt="abc"
+                        <a href="details.jsp"><img src="<%=recipeList.get(i).getThumbnail() %>" alt="abc"
                                                    class="img_responsive"></a>
-                        <h4>Bread Poha Recipe</h4>
-                        <p>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                            sagittis ipsum.
-                            Praesent mauris. Fusce nec </p>
-                        <a href="details.jsp" class="button">View More</a>
+                        <h4><%=recipeList.get(i).getName() %></h4>
+                        <p><%=recipeList.get(i).getIntro() %></p>
+                        <a href="details.jsp" class="button">Xem thêm</a>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="recipes_2">
-                        <a href="details.jsp"><img src="img/26.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Dal Tadka Recipe</h4>
-                        <p>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                            sagittis ipsum.
-                            Praesent mauris. Fusce nec </p>
-                        <a href="details.jsp" class="button">View More</a>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="recipes_2">
-                        <a href="details.jsp"><img src="img/27.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Dahi Wale Aloo Recipe</h4>
-                        <p>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                            sagittis ipsum.
-                            Praesent mauris. Fusce nec </p>
-                        <a href="details.jsp" class="button">View More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="recipes_1 clearfix">
-                <div class="col-sm-4">
-                    <div class="recipes_2">
-                        <a href="details.jsp"><img src="img/28.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Soya Upma Recipe</h4>
-                        <p>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                            sagittis ipsum.
-                            Praesent mauris. Fusce nec </p>
-                        <a href="details.jsp" class="button">View More</a>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="recipes_2">
-                        <a href="details.jsp"><img src="img/29.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Soya Kababs Recipe</h4>
-                        <p>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                            sagittis ipsum.
-                            Praesent mauris. Fusce nec </p>
-                        <a href="details.jsp" class="button">View More</a>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="recipes_2">
-                        <a href="details.jsp"><img src="img/30.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Soya Potato Rolls Recipe</h4>
-                        <p>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                            sagittis ipsum.
-                            Praesent mauris. Fusce nec </p>
-                        <a href="details.jsp" class="button">View More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="recipes_1 clearfix">
-                <div class="col-sm-4">
-                    <div class="recipes_2">
-                        <a href="details.jsp"><img src="img/31.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Healthy Soya Salad Recipe</h4>
-                        <p>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                            sagittis ipsum.
-                            Praesent mauris. Fusce nec </p>
-                        <a href="details.jsp" class="button">View More</a>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="recipes_2">
-                        <a href="details.jsp"><img src="img/32.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Chilli Nuggets Recipe</h4>
-                        <p>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                            sagittis ipsum.
-                            Praesent mauris. Fusce nec </p>
-                        <a href="details.jsp" class="button">View More</a>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="recipes_2">
-                        <a href="details.jsp"><img src="img/33.jpg" alt="abc" class="img_responsive"></a>
-                        <h4>Tomato Pappu Recipe</h4>
-                        <p>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                            sagittis ipsum.
-                            Praesent mauris. Fusce nec </p>
-                        <a href="details.jsp" class="button">View More</a>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </div>
     </div>
