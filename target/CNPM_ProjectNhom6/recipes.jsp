@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.st.Entity.Recipe" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="vn.edu.hcmuaf.st.Entity.Account" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +27,10 @@
     if (recipeList == null) {
         recipeList = new ArrayList<>();
     }
+    Account account = new Account();
+    if (session.getAttribute("acc") != null) {
+        account = (Account) session.getAttribute("acc");
+    }
 %>
 <section id="header">
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -48,7 +53,8 @@
                     <li><a href="index.jsp">TRANG CHỦ</a></li>
                     <li class="active"><a href="recipes.jsp">CÔNG THỨC</a></li>
                     <li><a href="contact.jsp">LIÊN HỆ</a></li>
-                    <li><a href="login.jsp">TÀI KHOẢN</a></li>
+                    <li><a href="login.jsp"><%=session.getAttribute("acc") != null ? account.getUname() : "TÀI KHOẢN" %>
+                    </a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -163,8 +169,10 @@
                     <div class="recipes_2">
                         <a href="details.jsp"><img src="<%=recipeList.get(i).getThumbnail() %>" alt="abc"
                                                    class="img_responsive"></a>
-                        <h4><%=recipeList.get(i).getName() %></h4>
-                        <p><%=recipeList.get(i).getIntro() %></p>
+                        <h4><%=recipeList.get(i).getName() %>
+                        </h4>
+                        <p><%=recipeList.get(i).getIntro() %>
+                        </p>
                         <a href="details.jsp" class="button">Xem thêm</a>
                     </div>
                 </div>
